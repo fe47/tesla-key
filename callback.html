@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Tesla Login</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 16px/1.5 system-ui, sans-serif; max-width: 40rem; margin: 3rem auto; padding: 0 1rem; }
+  textarea { width: 100%; height: 7rem; font: 13px ui-monospace, monospace; }
+  button { font: inherit; padding: .4rem 1rem; margin-top: .5rem; }
+</style>
+</head>
+<body>
+<h1>Login erfolgreich</h1>
+<p>Diese Adresse komplett kopieren und im Terminal einfügen. Der Code ist nur einmal und nur kurz gültig.</p>
+<textarea id="url" readonly></textarea>
+<button id="copy" type="button">Kopieren</button>
+<script>
+  const box = document.getElementById("url");
+  box.value = location.href;
+  document.getElementById("copy").addEventListener("click", async () => {
+    box.select();
+    try { await navigator.clipboard.writeText(box.value); } catch (e) { document.execCommand("copy"); }
+  });
+</script>
+</body>
+</html>
